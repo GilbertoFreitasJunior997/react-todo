@@ -10,6 +10,7 @@ export const InputContainer = styled.form`
         left: 3px;
         font-size: 12px;
         line-height: 12px;
+        color: #444444;
     }
 `;
 
@@ -22,7 +23,8 @@ export const Label = styled.label`
     font-size: 15px;
     top: 5px;
     left: 5px;
-    
+    color: #777777;
+
     transition: all 100ms ease-in-out;
 `;
 
@@ -38,8 +40,8 @@ export const Input = styled.input`
     width: 100%;
     height: 100%;
 
-    border-bottom: 2px solid black;
-    background-color: #DDDDDD;
     :focus {
+        border-bottom: 2px solid black;
+        background-color: #DDDDDD;
     }
 `;
