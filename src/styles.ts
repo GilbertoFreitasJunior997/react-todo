@@ -11,3 +11,14 @@ export const Container = styled.div`
 
     align-items: center;
 `
+
+export const TodoContainer = styled.div`
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: min-content;
+
+    width: 80%;
+    height: 100%;
+    gap: 10px;
+`;
