@@ -1,9 +1,10 @@
 import { FC } from "react";
+import TodoProps from "./props";
 
-const Todo: FC = () => {
+const Todo: FC<TodoProps> = ({ name }) => {
     return (
         <div>
-            TODO
+            {name}
         </div>
     )
 }
