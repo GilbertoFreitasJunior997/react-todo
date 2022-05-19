@@ -1,44 +1,54 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useRef, useState } from 'react';
 import { Input, Label, InputContainer } from './styles';
 import TextboxProps from './props';
 
-const Textbox: FC<TextboxProps> = ({ onSubmit, label }) => {
-    const inputRef = useRef<HTMLInputElement>(null)
+const TextBox: FC<TextboxProps> = ({ onSubmit, label, inputRef }) => {
     const labelRef = useRef<HTMLLabelElement>(null);
+    const [value, setValue] = useState("");
 
-    const id = `input-${label}`;
-    
-    const OnInputFocus = () => {
-        labelRef.current?.classList.add("label-focus")
-    }
-
-    const OnInputBlur = () => {
-        if(!inputRef.current?.value)
-            labelRef.current?.classList.remove("label-focus")
-    }
+    const randNum = Math.random().toString().replace(".", "");
+    const inputId = `input-${randNum}`;
+    const labelId = `label-${randNum}`;
 
     return (
         <InputContainer
             onSubmit={(e) => {
                 e.preventDefault();
-                onSubmit(inputRef.current?.value || "");
+                onSubmit(value);
+                setValue("");
             }}
         >
             <Label
-                htmlFor={id}
+                htmlFor={inputId}
                 ref={labelRef}
+                id={labelId}
             >
                 {label}
             </Label>
 
             <Input
                 ref={inputRef}
-                id={id}
-                onFocus={OnInputFocus}
-                onBlur={OnInputBlur}
+                id={inputId}
+                value={value}
+                onChange={e => setValue(e.target.value)}
+                onFocus={e => {
+                    const label = document.querySelector<HTMLLabelElement>(`#${labelId}`);
+                    if (label)
+                        label.classList.add("label-focus")
+                }}
+                onBlur={e => {
+                    const noSpacesVal = value.trim() === "";
+                    if(noSpacesVal) setValue("");
+                    
+                    if(!noSpacesVal && value) return;
+
+                    const label = document.querySelector<HTMLLabelElement>(`#${labelId}`);
+                    if (label)
+                        label.classList.remove("label-focus")
+                }}
             />
         </InputContainer>
     )
 }
 
-export default Textbox;
+export default TextBox;
