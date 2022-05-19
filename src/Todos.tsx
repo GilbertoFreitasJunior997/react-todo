@@ -31,11 +31,17 @@ const Todos: FC = () => {
             <TodoContainer>
                 {todos.length > 0 ?
                     <>
-                        {todos.map((t, i) => {
+                        {todos.sort((x, y) => x.id - y.id).map((t, i) => {
                             return (
                                 <Todo
                                     key={t.id}
                                     onDelete={() => setTodos(x => x.filter(y => y.id !== t.id))}
+                                    onValueUpdate={v => {
+                                        setTodos(z => [...z.filter(x => x.id !== t.id), {
+                                            ...t,
+                                            name: v,
+                                        }])
+                                    }}
                                     {...t}
                                 />
                             )

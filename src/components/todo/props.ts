@@ -3,4 +3,5 @@ export default interface TodoProps {
     id: number;
 
     onDelete(): void;
+    onValueUpdate(newVal: string): void;
 }

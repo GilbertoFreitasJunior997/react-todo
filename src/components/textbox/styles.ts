@@ -47,6 +47,7 @@ export const Input = styled.input`
     width: 100%;
     height: 100%;
     font-size: 20px;
+    
 
     :focus {
         border-bottom: 2px solid black;
